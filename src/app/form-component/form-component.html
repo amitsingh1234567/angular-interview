@@ -1,1 +1,44 @@
-<p>form-component works!</p>
+<form [formGroup]="userForm" (ngSubmit)="submit()">
+
+  <!-- String -->
+  <div>
+    <label>Name:</label>
+    <input type="text" formControlName="name" />
+  </div>
+
+  <!-- Array -->
+  <div formArrayName="skills">
+    <label>Skills:</label>
+    <div *ngFor="let skill of skills.controls; let i = index">
+      <input [formControlName]="i" />
+      <button type="button" (click)="removeSkill(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addSkill()">Add Skill</button>
+  </div>
+
+  <!-- Object -->
+  <div formGroupName="address">
+    <h4>Address</h4>
+    <input placeholder="City" formControlName="city" />
+    <input placeholder="State" formControlName="state" />
+    <input placeholder="Zip" formControlName="zip" />
+  </div>
+
+  <!-- Array of Objects -->
+  <div formArrayName="contacts">
+    <h4>Contacts</h4>
+
+    <div *ngFor="let contact of contacts.controls; let i = index"
+         [formGroupName]="i">
+      <input placeholder="Type (email/phone)" formControlName="type" />
+      <input placeholder="Value" formControlName="value" />
+      <button type="button" (click)="removeContact(i)">Remove</button>
+    </div>
+
+    <button type="button" (click)="addContact()">Add Contact</button>
+  </div>
+
+  <br />
+  <button type="submit">Submit</button>
+
+</form>
