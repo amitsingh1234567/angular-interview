@@ -19,9 +19,7 @@ export class FormComponent implements OnInit {
       name: ['', Validators.required],
 
       // array (simple values)
-      skills: this.fb.array([
-        this.fb.control('')
-      ]),
+      skills: this.fb.array([this.fb.control('', Validators.required)]),
 
       // object
       address: this.fb.group({
@@ -50,13 +48,13 @@ export class FormComponent implements OnInit {
   /** Create contact (object inside array) */
   createContact(): FormGroup {
     return this.fb.group({
-      type: [''],
-      value: ['']
+      email: [''],
+      mobile: ['']
     });
   }
 
   addSkill(): void {
-    this.skills.push(this.fb.control(''));
+    this.skills.push(this.fb.control('', Validators.required));
   }
 
   addContact(): void {

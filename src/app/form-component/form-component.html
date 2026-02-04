@@ -30,8 +30,8 @@
 
     <div *ngFor="let contact of contacts.controls; let i = index"
          [formGroupName]="i">
-      <input placeholder="Type (email/phone)" formControlName="type" />
-      <input placeholder="Value" formControlName="value" />
+      <input placeholder="Email" formControlName="email" />
+      <input placeholder="Mobile" formControlName="mobile" />
       <button type="button" (click)="removeContact(i)">Remove</button>
     </div>
 
@@ -39,6 +39,6 @@
   </div>
 
   <br />
-  <button type="submit">Submit</button>
+  <button type="submit" [disabled]="userForm.invalid">Submit</button>
 
 </form>

@@ -1,0 +1,34 @@
+<!-- <ng-template #card>
+    <div class="card">
+        <h2>Uxtrendz</h2>
+        <p>Welcome to our channel!</p>
+        <button class="subscribe-btn">Subscribe</button>
+    </div>
+</ng-template>
+
+<div class="card-raper">
+    <ng-container *ngTemplateOutlet="card"></ng-container>
+</div>
+<div class="card-raper">
+    <ng-container *ngTemplateOutlet="card"></ng-container>
+</div>
+<div class="card-raper">
+    <ng-container *ngTemplateOutlet="card"></ng-container>
+</div> -->
+
+
+<!-- let-card receives whatever you pass as $implicit -->
+<ng-template #card let-dataReciver>
+  <div class="card">
+    <h2>{{ dataReciver.title }}</h2>
+    <p>{{ dataReciver.message }}</p>
+    <button class="subscribe-btn" (click)="dataReciver.onClick?.()">
+      {{ dataReciver.btnText }}
+    </button>
+  </div>
+</ng-template>
+
+<!-- Pass your object as $implicit -->
+<div class="card-raper" *ngFor="let c of cards">
+  <ng-container *ngTemplateOutlet="card; context: { $implicit: c }"></ng-container>
+</div>

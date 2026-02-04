@@ -1,0 +1,37 @@
+<form [formGroup]="userProfile" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+        <h5>Name:</h5>
+        <input type="text" formControlName="name">
+
+        <h5>Skills:</h5>
+        <div formArrayName="skills">
+            <div *ngFor="let skill of skills.controls; let i = index">
+                <input type="text" [formControlName]="i">
+                <button type="button" (click)="removeSkills(i)">Remove</button>
+            </div>
+            <button type="button" (click)="addSkills()">Add Skills</button>
+        </div>
+
+        <h5>Address:</h5>
+        <div formGroupName="address">
+            <input type="text" placeholder="City" formControlName="city">
+            <input type="text" placeholder="State" formControlName="state">
+            <input type="text" placeholder="ZIP" formControlName="zip">
+        </div>
+
+        <h5>Contacts:</h5>
+        <div formArrayName="contacts">
+            <div *ngFor="let contact of contacts.controls; let i = index" [formGroupName]="i">
+                <input type="text" placeholder="Email" formControlName="email">
+                <input type="text" placeholder="Mobile" formControlName="mobile">
+                <button type="button"  (click)="removeContact(i)">Remove</button>
+            </div>
+            <button type="button" (click)="addContact()">Add Contact</button>
+        </div>
+
+    </div>
+
+    <hr>
+    <button type="submit">Submit</button>
+
+</form>

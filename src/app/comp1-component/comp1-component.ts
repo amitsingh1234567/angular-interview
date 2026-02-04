@@ -1,9 +1,10 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Comp2Component } from '../comp2-component/comp2-component';
+import { HighlightDirective } from '../directive/highlight.directive';
 
 @Component({
   selector: 'app-comp1-component',
-  imports: [Comp2Component],
+  imports: [Comp2Component, HighlightDirective],
   templateUrl: './comp1-component.html',
   styleUrl: './comp1-component.scss',
   // encapsulation: ViewEncapsulation.None
